@@ -37,7 +37,7 @@ public class FragmentMessage extends Fragment {
         listView.setAdapter(adaterfriend);
 
         for(int i=0;i<10;i++){
-            adaterfriend.addItem("박우빈"+i,"박우빈 옆에서 지금 채팅구현중이래요 바보멍충이 똥개 해삼 말미잘 이렇게 길게 적으면 어떻게 나올려나 궁금해서 길게 적는 중입니다 박소영 이쁨");
+            adaterfriend.addItem("박우빈"+i,"박우빈 옆에서 지금 채팅구현중이래요 바보멍충이 똥개 해삼 말미잘 이렇게 길게 적으면 어떻게 나올려나 궁금해서 길게 적는 중입니다 박소영 이쁘다");
         }
 
 
