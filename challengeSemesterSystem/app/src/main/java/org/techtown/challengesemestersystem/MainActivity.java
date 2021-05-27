@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_layout,fragmentHome).commitAllowingStateLoss();
 
     }
+
     public void clickMainButton(int a){
         fragmentTransaction=fragmentManager.beginTransaction();
         switch (a){
@@ -99,4 +101,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 }
