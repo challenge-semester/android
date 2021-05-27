@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentMessage"
-    android:background="#FFFAAA">
+    android:orientation="vertical">
 
-
-    <TextView
+    <ListView
+        android:id="@+id/Lv_chatfriend"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="메세지"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </ListView>
 
 
 </LinearLayout>
