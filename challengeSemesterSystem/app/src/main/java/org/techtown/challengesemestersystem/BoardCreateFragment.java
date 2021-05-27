@@ -34,9 +34,6 @@ public class BoardCreateFragment extends Fragment {
         btn_upload=(Button)view.findViewById(R.id.btn_upload);
         edit_content=(EditText)view.findViewById(R.id.edit_content);
 
-        fragmentManager=getSupportFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentHome=new FragmentHome();
 
         btn_cancel.setOnClickListener(new View.OnClickListener(){
             @Override
