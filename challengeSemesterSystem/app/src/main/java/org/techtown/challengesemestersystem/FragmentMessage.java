@@ -46,7 +46,7 @@ public class FragmentMessage extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent=new Intent(getContext(), ChatActivity.class);
-                intent.putExtra("key",friendItems.get(i).getLastcontent().toString());
+                intent.putExtra("key",friendItems.get(i).getUsername().toString());
                 System.out.println("화면은 이동할거 같아");
                 startActivity(intent);
 
