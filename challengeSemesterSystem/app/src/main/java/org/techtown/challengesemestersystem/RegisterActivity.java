@@ -19,6 +19,13 @@ import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +42,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -93,10 +102,12 @@ public class RegisterActivity extends AppCompatActivity {
                 studentNumber = edt_id.getText().toString();
                 username = edt_name.getText().toString();
 
+                sendRequest();
+
                 Log.d("json", "비번1:" + password + " 비번2:" + password2);
                 //비밀번호 2개가 다를 때
                 if (password.equals(password2)) {
-                    sendArray();
+                    //sendArray();
                 } else { //일치할 때
                     Log.d("json", "비번1:" + password + " 비번2:" + password2);
                     Toast.makeText(RegisterActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -107,6 +118,42 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+    public void sendRequest(){
+        String url="https://webhook.site/6810ba2b-8313-4549-83ef-11c6ba02fa51";
+        StringRequest request= new StringRequest(
+                Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("응답->"+ response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("error->"+ error.getMessage());
+            }
+        }
+        ){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params=new HashMap<String,String>();
+                params.put("department", department);
+                params.put("email", email);
+                params.put("passwrod", password);
+                params.put("phoneNumber", phoneNumber);
+                params.put("studentNumber", studentNumber);
+                params.put("username", username);
+                return params;
+            }
+        };
+        request.setShouldCache(false);//이전결과가 있어도 새로 요청하여 응답을 보여준다.
+        RegisterRequest.mrequestQueue= Volley.newRequestQueue(this);//requestQueue초기화 필수
+        RegisterRequest.mrequestQueue.add(request);
+        System.out.println("응답 보냄");
+
+
+    }
+
+
 
     RadioButton.OnClickListener radioButtonClickListener = new RadioButton.OnClickListener() {
         @Override
@@ -229,6 +276,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /*
     private void sendArray() {
         JSONObject jsonObject = new JSONObject();
         //JSONObject head=new JSONObject();
@@ -299,4 +347,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
+     */
 }
