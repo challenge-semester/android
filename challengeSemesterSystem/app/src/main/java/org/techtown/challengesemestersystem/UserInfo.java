@@ -1,7 +1,7 @@
 package org.techtown.challengesemestersystem;
 
 public class UserInfo {
-    public String username;
+    static String username;
     public String lastContent;
 
     public UserInfo(String username,String lastContent){
@@ -9,7 +9,7 @@ public class UserInfo {
         this.lastContent=lastContent;
     }
 
-    public String getUsername() {
+    static String getUsername() {
         return username;
     }
 

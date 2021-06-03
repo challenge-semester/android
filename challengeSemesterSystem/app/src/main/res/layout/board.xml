@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentHome"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/ic_baseline_edit_24"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/btn_create"
+        android:layout_alignBottom="@id/btn_create"
+        android:gravity="center"
+        android:text="새글쓰기"
+        android:textSize="18dp"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:id="@+id/edit_search"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/btn_search"/>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_baseline_search_24"/>
+
     <ListView
         android:id="@+id/listview_board"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_search"
+        android:layout_marginTop="10dp"/>
 
 
 
-</LinearLayout>
+</RelativeLayout>

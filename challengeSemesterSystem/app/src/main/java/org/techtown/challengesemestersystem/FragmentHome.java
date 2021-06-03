@@ -5,27 +5,48 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class FragmentHome extends Fragment {
-    //static final String[] ListMenu={"박소영","mini0u0","pthdud1123","알파카","도전학기제","여기의글을 채워넣어야해","리스트뷰내부 디자인은어떻게 할까","지금은 1시37분","내가 야하면 너는 예","피자","서버는 어떻게 할것인가요","식빵우유","동아대학교","컴퓨터공학과","도망가자"};
 
     private ListView listview;
     private BoardAdapter boardAdapter;
+    private Button btn_create, btn_search;
+    private EditText edit_search;
 
-    public FragmentHome(){
-
-    }
+    public FragmentHome (){ }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.board,container,false);
+        //ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.f,container,false);
+
+        btn_create=(Button)view.findViewById(R.id.btn_create);
+        btn_search=(Button)view.findViewById(R.id.btn_search);
+        edit_search=(EditText)view.findViewById(R.id.edit_search);
+
+        btn_create.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), BoardCreateActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_search.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         listview=(ListView)view.findViewById(R.id.listview_board);
         boardAdapter=new BoardAdapter();
