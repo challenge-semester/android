@@ -30,12 +30,10 @@ public class LoginActivity extends AppCompatActivity {
                 String id=edt_id.getText().toString();
                 String pw=edt_pw.getText().toString();
 
-                Log.d("error","Login1");
+
 
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-
-                Log.d("error","Login2");
             }
         });
 

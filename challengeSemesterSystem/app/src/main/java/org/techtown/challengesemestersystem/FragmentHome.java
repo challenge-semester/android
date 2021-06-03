@@ -5,11 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,6 +27,7 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.board,container,false);
+        //ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.f,container,false);
 
         btn_create=(Button)view.findViewById(R.id.btn_create);
         btn_search=(Button)view.findViewById(R.id.btn_search);
@@ -35,7 +36,8 @@ public class FragmentHome extends Fragment {
         btn_create.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(getActivity(), BoardCreateActivity.class);
+                startActivity(intent);
             }
         });
 

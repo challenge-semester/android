@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BoardCreateFragment">
+    tools:context=".BoardCreateActivity">
 
     <Button
         android:id="@+id/btn_cancel"
@@ -47,6 +47,6 @@
         android:layout_below="@id/tv1"
         android:layout_marginTop="10dp"
         android:hint="내용"
-        android:gravity="center"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:textColor="#000000"/>
 </RelativeLayout>
