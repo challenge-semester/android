@@ -1,5 +1,6 @@
 package org.techtown.challengesemestersystem;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.icu.util.Output;
 import android.os.AsyncTask;
@@ -21,8 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -101,8 +104,35 @@ public class RegisterActivity extends AppCompatActivity {
                 phoneNumber = edt_phone.getText().toString();
                 studentNumber = edt_id.getText().toString();
                 username = edt_name.getText().toString();
+/*
+                String data="{"+
+                        "\"deparment:\""+department+"\","+
+                        "\"email:\""+email+"\","+
+                        "\"password:\""+password+"\","+
+                        "\"phoneNumber:\""+phoneNumber+"\","+
+                        "\"studentNumber:\""+studentNumber+"\","+
+                        "\"username:\""+username+"\","+
+                        "}";
+                */
+                JSONObject jsonObject=new JSONObject();
+                try {
+                    jsonObject.put("department",department);
+                    jsonObject.put("email",email);
+                    jsonObject.put("password",password);
+                    jsonObject.put("phoneNumber",phoneNumber);
+                    jsonObject.put("studentNumber",studentNumber);
+                    jsonObject.put("username",username);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                sendRequest();
+                try {
+                    sendRequest(jsonObject);
+                    System.out.println("서버에 요청 보냈다~");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(jsonObject);
 
                 Log.d("json", "비번1:" + password + " 비번2:" + password2);
                 //비밀번호 2개가 다를 때
@@ -118,40 +148,38 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-    public void sendRequest(){
-        String url="https://webhook.site/6810ba2b-8313-4549-83ef-11c6ba02fa51";
-        StringRequest request= new StringRequest(
-                Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                System.out.println("응답->"+ response);
-            }
-        }, new Response.ErrorListener() {
+
+    public void sendRequest(JSONObject data) throws JSONException {
+        String url = "http://118.67.131.121:8080/api/members/join";
+        //String url = "https://webhook.site/7705efe4-8ce5-4503-90be-32e2e130bb67";
+
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, url, data,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("error->"+ error.getMessage());
+
             }
-        }
-        ){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params=new HashMap<String,String>();
-                params.put("department", department);
-                params.put("email", email);
-                params.put("passwrod", password);
-                params.put("phoneNumber", phoneNumber);
-                params.put("studentNumber", studentNumber);
-                params.put("username", username);
-                return params;
-            }
-        };
-        request.setShouldCache(false);//이전결과가 있어도 새로 요청하여 응답을 보여준다.
-        RegisterRequest.mrequestQueue= Volley.newRequestQueue(this);//requestQueue초기화 필수
-        RegisterRequest.mrequestQueue.add(request);
-        System.out.println("응답 보냄");
+        });
+        RequestQueue queue =Volley.newRequestQueue(getApplicationContext());
+        queue.add(jsonObjectRequest);
+
+
+
+
+
 
 
     }
+
+
+
+
+
 
 
 
