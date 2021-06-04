@@ -152,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void sendRequest(JSONObject data) throws JSONException {
         String url = "http://118.67.131.121:8080/api/members/join";
         //String url = "https://webhook.site/7705efe4-8ce5-4503-90be-32e2e130bb67";
-
+        Log.d("sy","개빡치낟ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ");
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, url, data,
                 new Response.Listener<JSONObject>() {
                     @Override
